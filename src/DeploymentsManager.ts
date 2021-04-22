@@ -1086,6 +1086,7 @@ export class DeploymentsManager {
         [contractName: string]: {
           address: string;
           abi: any[];
+          bytecode?: string;
           linkedData?: any;
         };
       } = {};
@@ -1095,6 +1096,7 @@ export class DeploymentsManager {
         currentNetworkDeployments[contractName] = {
           address: deployment.address,
           abi: deployment.abi,
+          bytecode: deployment.bytecode,
           linkedData: deployment.linkedData,
         };
       }
@@ -1118,6 +1120,7 @@ export class DeploymentsManager {
       const currentNetworkDeployments: {
         [contractName: string]: {
           address: string;
+          bytecode?: string;
           abi: any[];
           linkedData?: any;
         };
@@ -1129,6 +1132,7 @@ export class DeploymentsManager {
           currentNetworkDeployments[contractName] = {
             address: deployment.address,
             abi: deployment.abi,
+            bytecode: deployment.bytecode,
             linkedData: deployment.linkedData,
           };
         }
