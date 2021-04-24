@@ -524,6 +524,21 @@ task(
     await deploymentsManager.export(args);
   });
 
+task('deployment-cost', 'prints the cost of the deployment').setAction(
+  async (args) => {
+    const deployments = await deploymentsManager.loadDeployments(false);
+
+    const totalGas = Object.values(deployments).reduce(
+      (gas, dep) => (gas += Number(dep.receipt?.gasUsed)),
+      0
+    );
+    console.log(
+      `total gas of the deployment is ${totalGas}`,
+      totalGas.toString()
+    );
+  }
+);
+
 async function enableProviderLogging(
   provider: EthereumProvider,
   enabled: boolean

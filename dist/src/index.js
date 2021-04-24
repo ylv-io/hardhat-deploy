@@ -396,6 +396,11 @@ config_1.task(exports.TASK_EXPORT, 'export contract deployment of the specified 
     await deploymentsManager.loadDeployments(false);
     await deploymentsManager.export(args);
 });
+config_1.task('deployment-cost', 'prints the cost of the deployment').setAction(async (args) => {
+    const deployments = await deploymentsManager.loadDeployments(false);
+    const totalGas = Object.values(deployments).reduce((gas, dep) => { var _a; return (gas += Number((_a = dep.receipt) === null || _a === void 0 ? void 0 : _a.gasUsed)); }, 0);
+    console.log(`total gas of the deployment is ${totalGas}`, totalGas.toString());
+});
 async function enableProviderLogging(provider, enabled) {
     await provider.request({
         method: 'hardhat_setLoggingEnabled',
